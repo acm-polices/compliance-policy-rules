@@ -1,2 +1,2 @@
 # compliance-policy-rules
-compliance operator rules
+This repository breaks down the NIST-800-53 remediation list for OpenShift >= 4.14 to apply to a cluster. The sections are broken down from IA findings of Critical, High, Medium and Low. 
