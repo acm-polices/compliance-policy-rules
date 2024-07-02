@@ -17,7 +17,7 @@ spec:
     compliance: Compliant
     kind: Policy
     name: policy-comp-operator
-    namespace: open-cluster-policies
+    namespace: policies
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
@@ -90,7 +90,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: placement-policy-cis-scan
-  namespace: open-cluster-policies
+  namespace: policies
 spec:
   clusterSets:
     - default
@@ -104,7 +104,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: placement-policy-cis-scan
-  namespace: open-cluster-policies
+  namespace: policies
 placementRef:
   name: placement-policy-cis-scan
   apiGroup: cluster.open-cluster-management.io
