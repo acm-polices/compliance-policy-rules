@@ -113,3 +113,12 @@ subjects:
   - name: placement-policy-cis-scan
     apiGroup: policy.open-cluster-management.io
     kind: Policy
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-cis-scan
+spec:
+  clusterSelector:
+    matchExpressions:
+      - {key: vendor, operator: In, values: ["OpenShift"]}
