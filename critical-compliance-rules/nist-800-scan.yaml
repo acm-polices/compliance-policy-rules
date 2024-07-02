@@ -103,7 +103,7 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: pplacement-policy-cis-scan
+  name: placement-policy-cis-scan
   namespace: open-cluster-policies
 placementRef:
   name: placement-policy-cis-scan
