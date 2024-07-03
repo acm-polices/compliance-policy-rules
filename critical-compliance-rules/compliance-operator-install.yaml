@@ -112,7 +112,7 @@ metadata:
   name: binding-policy-comp-operator
   namespace: policies
 placementRef:
-  name: placement-policy-comp-operator
+  name: binding-policy-comp-operator
   apiGroup: cluster.open-cluster-management.io
   kind: Placement
 subjects:
