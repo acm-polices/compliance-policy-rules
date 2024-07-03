@@ -111,6 +111,6 @@ placementRef:
   apiGroup: cluster.open-cluster-management.io
   kind: Placement
 subjects:
-  - name: policy-stig-scan
+  - name: policy-stig-scan  #Subject must match name in metadata
     apiGroup: policy.open-cluster-management.io
     kind: Policy
