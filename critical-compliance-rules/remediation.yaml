@@ -31,7 +31,7 @@ spec:
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-          {{- range (acm-hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" acm-hub)}}
+          {{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}
             - complianceType: musthave
               objectDefinition:
                 apiVersion: compliance.openshift.io/v1alpha1
@@ -41,7 +41,7 @@ spec:
                 spec:
                   apply: true
           {{- end }}
-          {{- range (acm-hub fromConfigMap "policies" "stig-remediation" "rhcos4-stig" acm-hub)}}
+          {{- range (hub fromConfigMap "policies" "stig-remediation" "rhcos4-stig" hub)}}
             - complianceType: musthave
               objectDefinition:
                 apiVersion: compliance.openshift.io/v1alpha1
