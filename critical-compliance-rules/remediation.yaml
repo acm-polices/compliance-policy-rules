@@ -27,7 +27,7 @@ spec:
           name: auto-remediate
           namespace: policies
         spec:
-          remediationAction: inform
+          remediationAction: enforce
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
