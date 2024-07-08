@@ -31,7 +31,7 @@ spec:
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-          {{ printf "{{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}" }} 
+          {{ `{{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}` }}
             - complianceType: musthave
               objectDefinition:
                 apiVersion: compliance.openshift.io/v1alpha1
@@ -40,17 +40,7 @@ spec:
                   name: '{{ . }}'
                 spec:
                   apply: true
-          {{ printf "{{- end }}" }}
-          {{ printf "{{- range (hub fromConfigMap "policies" "stig-remediation" "rhcos4-stig" hub)}}" }}
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: compliance.openshift.io/v1alpha1
-                kind: ComplianceRemediation
-                metadata:
-                  name: '{{ . }}'
-                spec:
-                  apply: true
-          {{ printf "{{- end }}" }}
+          {{ `{{- end }}` }}
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
