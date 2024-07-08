@@ -31,7 +31,8 @@ spec:
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-          {{ `{{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}` }}
+            {{ - range (lookup "v1" "ConfigMap" "policies" "").items }}
+            {{ -if eq .data.name "stig-remediation" }}
             - complianceType: musthave
               objectDefinition:
                 apiVersion: compliance.openshift.io/v1alpha1
@@ -40,7 +41,8 @@ spec:
                   name: '{{ . }}'
                 spec:
                   apply: true
-          {{ `{{- end }}` }}
+            {{- end }}
+            {{- end }}
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
