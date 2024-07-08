@@ -54,24 +54,6 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: compliance-suite-stig
-        spec:
-          remediationAction: inform
-          severity: high
-          object-templates:
-            - complianceType: musthave # this template checks if scan has completed by checking the status field
-              objectDefinition:
-                apiVersion: compliance.openshift.io/v1alpha1
-                kind: ComplianceSuite
-                metadata:
-                  name: cis
-                  namespace: openshift-compliance
-                status:
-                  phase: DONE
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
           name: compliance-suite-stig-results
         spec:
           remediationAction: inform
