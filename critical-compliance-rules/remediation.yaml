@@ -32,7 +32,6 @@ spec:
           pruneObjectBehavior: None
           object-templates-raw: |
           !!str {{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}
-       
             - complianceType: musthave
               objectDefinition:
                 apiVersion: compliance.openshift.io/v1alpha1
