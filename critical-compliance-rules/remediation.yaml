@@ -5,7 +5,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auto-remediate
-  namespace: policies
+  namespace: open-cluster-policies
   annotations:
     policy.open-cluster-management.io/standards: NIST SP 800-53
     policy.open-cluster-management.io/categories: CM Configuration Management
@@ -18,20 +18,20 @@ spec:
     compliance: Compliant
     kind: Policy
     name: policy-stig-scan
-    namespace: policies
+    namespace: open-cluster-policies
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
           name: auto-remediate
-          namespace: policies
+          namespace: open-cluster-policies
         spec:
           remediationAction: enforce
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-            {{- range (hub fromConfigMap "policies" "stig-remediation" "ocp4-stig" hub)}}
+            {{- range (hub fromConfigMap "open-cluster-policies" "stig-remediation" "ocp4-stig" hub)}}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
@@ -41,7 +41,7 @@ spec:
                   spec:
                     apply: true
             {{- end }}
-              {{- range (hub fromConfigMap "policies" "stig-remediation" "rhcos4-stig" hub)}}
+              {{- range (hub fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig" hub)}}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
@@ -56,7 +56,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: placement-policy-auto-remediate
-  namespace: policies
+  namespace: open-cluster-policies
 spec:
   clusterSets:
     - acm-hub
@@ -70,7 +70,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: placement-policy-auto-remediate
-  namespace: policies
+  namespace: open-cluster-policies
 placementRef:
   name: placement-policy-auto-remediate
   apiGroup: cluster.open-cluster-management.io

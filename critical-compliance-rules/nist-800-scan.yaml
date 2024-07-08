@@ -5,7 +5,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-stig-scan
-  namespace: policies
+  namespace: open-cluster-policies
   annotations:
     policy.open-cluster-management.io/standards: NIST SP 800-53
     policy.open-cluster-management.io/categories: CM Configuration Management
@@ -18,7 +18,7 @@ spec:
     compliance: Compliant
     kind: Policy
     name: policy-comp-operator
-    namespace: policies
+    namespace: open-cluster-policies
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
@@ -54,6 +54,24 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
+          name: compliance-suite-stig
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave # this template checks if scan has completed by checking the status field
+              objectDefinition:
+                apiVersion: compliance.openshift.io/v1alpha1
+                kind: ComplianceSuite
+                metadata:
+                  name: cis
+                  namespace: openshift-compliance
+                status:
+                  phase: DONE
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
           name: compliance-suite-stig-results
         spec:
           remediationAction: inform
@@ -73,7 +91,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: policy-csi-scan-placement
-  namespace: policies
+  namespace: open-cluster-policies
 spec:
   tolerations:
     - key: cluster.open-cluster-management.io/unreachable
@@ -87,7 +105,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: policy-csi-scan-placement
-  namespace: policies
+  namespace: open-cluster-policies
 placementRef:
   name: policy-csi-scan-placement
   apiGroup: cluster.open-cluster-management.io

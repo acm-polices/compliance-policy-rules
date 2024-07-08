@@ -96,7 +96,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: binding-policy-comp-operator
-  namespace: policies
+  namespace: open-cluster-policies
 spec:
   tolerations:
     - key: cluster.open-cluster-management.io/unreachable
@@ -110,7 +110,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-comp-operator
-  namespace: policies
+  namespace: open-cluster-policies
 placementRef:
   name: binding-policy-comp-operator
   apiGroup: cluster.open-cluster-management.io
