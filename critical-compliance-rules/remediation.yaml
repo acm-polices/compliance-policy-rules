@@ -41,7 +41,7 @@ spec:
                   spec:
                     apply: true
             {{ end }}
-              {{hub (lookup fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig") | protect hub}}
+              {{hub (lookup "v1" fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig") | protect hub}}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
