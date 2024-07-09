@@ -30,25 +30,25 @@ spec:
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-            {{hub (lookup fromConfigMap "open-cluster-policies" "stig-remediation" "ocp4-stig") hub}}
+            {{- range $index, $element := hub (lookup "fromConfigMap" "open-cluster-policies" "stig-remediation" "ocp4-stig") "hub" }}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
                   kind: ComplianceRemediation
                   metadata:
-                    name: '{{ . }}'
-                    namespace: open-cluster-policies
+                    name: '{{ $element.Name }}'
+                    namespace: openshift-compliance
                   spec:
                     apply: true
             {{- end }}
-              {{hub (lookup fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig") hub}}
+              {{- range $index, $element := hub (lookup "fromConfigMap" "open-cluster-policies" "stig-remediation" "rhcos4-stig") "hub" }}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
                   kind: ComplianceRemediation
                   metadata:
-                    name: '{{ . }}'
-                    namespace: open-cluster-policies
+                    name: '{{ $element.Name }}'
+                    namespace: openshift-compliance
                   spec:
                     apply: true
               {{- end }}
