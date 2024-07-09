@@ -25,7 +25,6 @@ spec:
         kind: ConfigurationPolicy
         metadata:
           name: auto-remediate
-          namespace: open-cluster-policies
         spec:
           remediationAction: enforce
           severity: high
@@ -38,6 +37,7 @@ spec:
                   kind: ComplianceRemediation
                   metadata:
                     name: '{{ . }}'
+                    namespace: openshift-compliance
                   spec:
                     apply: true
             {{- end }}
@@ -48,6 +48,7 @@ spec:
                   kind: ComplianceRemediation
                   metadata:
                     name: '{{ . }}'
+                    namespace: openshift-compliance
                   spec:
                     apply: true
               {{- end }}
