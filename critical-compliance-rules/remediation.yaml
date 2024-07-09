@@ -37,7 +37,7 @@ spec:
                   kind: ComplianceRemediation
                   metadata:
                     name: '{{ . }}'
-                    namespace: openshift-compliance
+                    namespace: open-cluster-policies
                   spec:
                     apply: true
             {{- end }}
@@ -48,7 +48,7 @@ spec:
                   kind: ComplianceRemediation
                   metadata:
                     name: '{{ . }}'
-                    namespace: openshift-compliance
+                    namespace: open-cluster-policies
                   spec:
                     apply: true
               {{- end }}
