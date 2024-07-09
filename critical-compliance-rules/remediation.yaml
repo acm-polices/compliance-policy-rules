@@ -30,7 +30,7 @@ spec:
           severity: high
           pruneObjectBehavior: None
           object-templates-raw: |
-            {{hub (fromConfigMap "open-cluster-policies" "stig-remediation" "ocp4-stig") | protect hub}}
+            {{hub (fromConfigMap "open-cluster-policies" "stig-remediation" "ocp4-stig") | hub}}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
@@ -40,8 +40,7 @@ spec:
                     namespace: openshift-compliance
                   spec:
                     apply: true
-            {{ end }}
-              {{hub (fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig") | protect hub}}
+              {{hub (fromConfigMap "open-cluster-policies" "stig-remediation" "rhcos4-stig") | hub}}
               - complianceType: musthave
                 objectDefinition:
                   apiVersion: compliance.openshift.io/v1alpha1
@@ -51,7 +50,6 @@ spec:
                     namespace: openshift-compliance
                   spec:
                     apply: true
-              {{ end }}
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
